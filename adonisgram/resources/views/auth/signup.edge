@@ -1,5 +1,32 @@
 @layout('layouts/default')
 
 @section('content')
-  <h1>Sign Up</h1>
+  <div>
+    <h1>Sign Up</h1>
+    <form action="{{route('signup_user')}}" method="POST">
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" value="{{ flashMessages.get('username') || '' }}">
+        <p>{{ flashMessages.get('errors.username') || '' }}</p>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="{{ flashMessages.get('email') || '' }}">
+        <p>{{ flashMessages.get('errors.email') || '' }}</p>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <p>{{ flashMessages.get('errors.password') || '' }}</p>
+      </div>
+      <div>
+        <label for="password_confirmation">Confirm</label>
+        <input type="password" name="password_confirmation" id="password_confirmation">
+        <p>{{ flashMessages.get('errors.password_confirmation') || '' }}</p>
+      </div>
+      <div>
+        <button type="submit">Sign up</button>
+      </div>
+    </form>
+  </div>
 @endsection
