@@ -1,22 +1,23 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User'
 
 export default class AuthController {
     public async show_signup_form ({view}: HttpContextContract) {
         return view.render('auth/signup')
       }
 
-      public async signup_user ({view, request}: HttpContextContract) {
+      public async signup_user ({view, request, response}: HttpContextContract) {
         
         const validationSchema = schema.create({
           username: schema.string({ trim: true }, [
             rules.maxLength(32),
-            //rules.unique({ table: 'users', column: 'username' }),
+            rules.unique({ table: 'users', column: 'username' }),
           ]),
           email: schema.string({ trim: true }, [
             rules.email(),
-            rules.maxLength(254)
-            //rules.unique({ table: 'users', column: 'email' }),
+            rules.maxLength(254),
+            rules.unique({ table: 'users', column: 'email' }),
           ]),
           password: schema.string({ trim: true }, [
             rules.maxLength(32),
@@ -36,7 +37,14 @@ export default class AuthController {
           schema: validationSchema,
           messages: validationMessages,
         })
-        return view.render('auth/signup', userDetails)
+        
+        const user = new User()
+        user.username = userDetails.username
+        user.email = userDetails.email
+        user.password = userDetails.password
+        await user.save()
+
+        response.redirect().back()      
       }
 
       public async show_signin_form ({view}: HttpContextContract) {
