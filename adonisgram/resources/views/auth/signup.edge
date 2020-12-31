@@ -1,33 +1,36 @@
 @layout('layouts/default')
 
 @section('content')
-  <div>
-    <h1>Sign Up</h1>
+  <div class="max-w-xs mx-auto text-gray-800 bg-white rounded p-8 border border-gray-300">
+    <h1 style="font-family: 'Pacifico'" class="text-4xl h-14 text-center">adonisgram</h1>
+    <h2 class="text-center font-bold text-gray-500">Sign up to see photos and videos from your friends.</h2>
     <form action="{{route('signup_user')}}" method="POST">
       {{ csrfField() }}
       <div>
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="{{ flashMessages.get('username') || '' }}">
-        <p>{{ flashMessages.get('errors.username') || '' }}</p>
+        <input class="border w-full h-5 px-2 py-4 mt-4 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="text" name="username" id="username" value="{{ flashMessages.get('username') || '' }}" placeholder="Username">
+        <p class="text-xs text-red-600">{{ flashMessages.get('errors.username') || '' }}</p>
       </div>
       <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="{{ flashMessages.get('email') || '' }}">
-        <p>{{ flashMessages.get('errors.email') || '' }}</p>
+        <input class="border w-full h-5 px-2 py-4 mt-2 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="email" name="email" id="email" value="{{ flashMessages.get('email') || '' }}" placeholder="Email">
+        <p class="text-xs text-red-600">{{ flashMessages.get('errors.email') || '' }}</p>
       </div>
       <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <p>{{ flashMessages.get('errors.password') || '' }}</p>
+        <input class="border w-full h-5 px-2 py-4 mt-2 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="password" name="password" id="password" placeholder="Password">
+        <p class="text-xs text-red-600">{{ flashMessages.get('errors.password') || '' }}</p>
       </div>
       <div>
-        <label for="password_confirmation">Confirm</label>
-        <input type="password" name="password_confirmation" id="password_confirmation">
-        <p>{{ flashMessages.get('errors.password_confirmation') || '' }}</p>
+        <input class="border w-full h-5 px-2 py-4 mt-2 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm">
+        <p class="text-xs text-red-600">{{ flashMessages.get('errors.password_confirmation') || '' }}</p>
       </div>
       <div>
-        <button type="submit">Sign up</button>
+        <button class="bg-blue-300 w-full text-white py-1 mt-2 rounded" type="submit">Sign up</button>
+      </div>
+      <div>
+        <p class="text-xs text-center text-gray-500 mt-2">By signing up, you agree to our <a class="text-gray-600 font-bold" href="#">Terms</a> , <a class="text-gray-600 font-bold" href="#">Data Policy</a> and <a class="text-gray-600 font-bold" href="#">Cookies Policy</a> .</p>
       </div>
     </form>
+  </div>
+  <div class="max-w-xs text-center mt-2 mx-auto text-sm text-gray-800 bg-white rounded p-8 border border-gray-300">
+    Have an account? <a class="text-blue-400 font-bold" href="{{route('show_signin_form')}}">Log in</a>
   </div>
 @endsection
