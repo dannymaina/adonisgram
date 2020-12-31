@@ -46,7 +46,7 @@ export default class AuthController {
     user.username = userDetails.username;
     user.email = userDetails.email;
     user.password = userDetails.password;
-    //await user.save()
+    await user.save()
 
     session.flash({ success: "Your account has been created" });
 
@@ -57,7 +57,7 @@ export default class AuthController {
     return view.render("auth/signin");
   }
 
-  public async signin_user({ view, request }: HttpContextContract) {
+  public async signin_user({ request, response, auth }: HttpContextContract) {
     const validationSchema = schema.create({
       email: schema.string({ trim: true }),
       password: schema.string({ trim: true }),
@@ -71,6 +71,18 @@ export default class AuthController {
       schema: validationSchema,
       messages: validationMessages,
     });
-    return view.render("auth/signin", userDetails);
+
+    await auth.attempt(userDetails.email, userDetails.password)
+
+    return response.redirect().toRoute('profile')
+  }
+
+  /**
+   * logout
+    {auth, response}: HttpContextContract   
+  */
+  public signout_user({auth, response}: HttpContextContract) {
+    auth.logout()
+    response.redirect().toRoute('show_signin_form')
   }
 }
