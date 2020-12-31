@@ -4,6 +4,7 @@
   <div>
     <h1>Sign Up</h1>
     <form action="{{route('signup_user')}}" method="POST">
+      {{ csrfField() }}
       <div>
         <label for="username">Username</label>
         <input type="text" name="username" id="username" value="{{ flashMessages.get('username') || '' }}">

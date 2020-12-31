@@ -3,7 +3,9 @@
 @section('content')
   <div>
     <h1>Sign In</h1>
+    <p>{{ flashMessages.get('success') || '' }}</p>
     <form action="{{route('signin_user')}}" method="POST">
+      {{ csrfField() }}
       <div>
         <label for="email">Email</label>
         <input type="text" name="email" id="email" value="{{ flashMessages.get('email') || '' }}">
