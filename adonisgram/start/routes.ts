@@ -7,4 +7,7 @@ Route.post('signup', 'AuthController.signup_user').as('signup_user')
 Route.get('signin', 'AuthController.show_signin_form').as('show_signin_form')
 Route.post('signin', 'AuthController.signin_user').as('signin_user')
 
+Route.get('profile', 'ProfilesController.index').as('profile')
+
+
 Route.get('health', 'HealthChecksController.index').as('health_check')

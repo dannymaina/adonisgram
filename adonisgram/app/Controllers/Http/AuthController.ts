@@ -7,7 +7,7 @@ export default class AuthController {
         return view.render('auth/signup')
       }
 
-      public async signup_user ({view, request, response}: HttpContextContract) {
+      public async signup_user ({request, response}: HttpContextContract) {
         
         const validationSchema = schema.create({
           username: schema.string({ trim: true }, [
