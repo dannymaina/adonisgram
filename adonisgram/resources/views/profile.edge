@@ -2,6 +2,8 @@
 
 @section('content')
   <div>
-    <h1>profile</h1>
+    <h1>Welcome, {{auth.user.username}}</h1>
+    <a href="{{route('signout_user')}}">Sign out</a>
+
   </div>
 @endsection
