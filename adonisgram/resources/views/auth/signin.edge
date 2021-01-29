@@ -1,16 +1,19 @@
 @layout('layouts/default')
 
 @section('content')
+  @if(flashMessages.get('auth.errors'))
+    <div class=" bg-red-500 text-white text-sm font-bold py-2 px-2 rounded absolute top-4 right-4 animate-bounce">Invalid login credentials</div>
+  @endif
   @if(flashMessages.get('success'))
-    <div class=" bg-green-500 text-white text-sm py-2 px-2 rounded absolute top-4 right-4">{{ flashMessages.get('success') || '' }}</div>
+    <div class=" bg-green-500 text-white text-sm font-bold py-2 px-2 rounded absolute top-4 right-4 animate-bounce">{{ flashMessages.get('success') || '' }}</div>
   @endif
   <div class="max-w-xs mx-auto text-gray-800 bg-white rounded p-8 border border-gray-300">
     <h1 style="font-family: 'Pacifico'" class="text-4xl h-14 text-center">adonisgram</h1>
-    <h2 class="text-center font-bold text-gray-500">Log in to see and share photos and videos with your friends.</h2>
+    <h2 class="text-center font-bold text-gray-500 mt-2">Log in to see and share photos and videos with your friends.</h2>
     <form action="{{route('signin_user')}}" method="POST">
       {{ csrfField() }}
       <div>
-        <input class="border w-full h-5 px-2 py-4 mt-2 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="email" name="email" id="email" value="{{ flashMessages.get('email') || '' }}" placeholder="Email">
+        <input class="border w-full h-5 px-2 py-4 mt-4 rounded focus:outline-none hover: outline-none focus:ring-1 focus:ring-gray-300 placeholder-gray-800 text-sm" type="text" name="email" id="email" value="{{ flashMessages.get('email') || '' }}" placeholder="Email or Username">
         <p class="text-xs text-red-600">{{ flashMessages.get('errors.email') || '' }}</p>
       </div>
       <div>
@@ -18,7 +21,7 @@
         <p class="text-xs text-red-600">{{ flashMessages.get('errors.password') || '' }}</p>
       </div>
       <div>
-        <button class="bg-blue-300 w-full text-white py-1 mt-2 rounded" type="submit">Log in</button>
+        <button class="bg-blue-500 w-full text-white py-1 mt-2 rounded" type="submit">Log in</button>
       </div>
       <div>
         <a href="#" class="text-sm text-center block text-gray-500 mt-4">Forgot password?</a>

@@ -3,7 +3,7 @@
 @section('content')
   <div class="max-w-xs mx-auto text-gray-800 bg-white rounded p-8 border border-gray-300">
     <h1 style="font-family: 'Pacifico'" class="text-4xl h-14 text-center">adonisgram</h1>
-    <h2 class="text-center font-bold text-gray-500">Sign up to see photos and videos from your friends.</h2>
+    <h2 class="text-center font-bold text-gray-500 mt-2">Sign up to see photos and videos from your friends.</h2>
     <form action="{{route('signup_user')}}" method="POST">
       {{ csrfField() }}
       <div>
@@ -23,7 +23,7 @@
         <p class="text-xs text-red-600">{{ flashMessages.get('errors.password_confirmation') || '' }}</p>
       </div>
       <div>
-        <button class="bg-blue-300 w-full text-white py-1 mt-2 rounded" type="submit">Sign up</button>
+        <button class="bg-blue-500 w-full text-white py-1 mt-2 rounded" type="submit">Sign up</button>
       </div>
       <div>
         <p class="text-xs text-center text-gray-500 mt-2">By signing up, you agree to our <a class="text-gray-600 font-bold" href="#">Terms</a> , <a class="text-gray-600 font-bold" href="#">Data Policy</a> and <a class="text-gray-600 font-bold" href="#">Cookies Policy</a> .</p>

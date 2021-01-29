@@ -34,7 +34,7 @@ export default class AuthController {
         "{{field}} must have a max of {{ options.maxLength }} characters",
       unique: "{{field}} is already in use",
       email: "please provide a valid email address",
-      "password_confirmation.confirmed": "Passwords don't match",
+      confirmed: "Passwords don't match",
     };
 
     const userDetails = await request.validate({
